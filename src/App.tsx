@@ -583,7 +583,7 @@ export default function App() {
               </ul>
               
               <div className="mb-8 w-full max-w-[320px]">
-                <img src="https://i.ibb.co/jvCqYgPj/image.png" alt="Selo de Qualidade" className="w-full h-auto object-contain" />
+                <img src="https://i.ibb.co/9HdWkq0x/AQ8UI.png" alt="Selo de Qualidade" className="w-full h-auto object-contain" />
               </div>
               <button
                 onClick={handleBasicSelect}
@@ -632,7 +632,7 @@ export default function App() {
               </ul>
               
               <div className="mb-8 w-full max-w-[320px]">
-                <img src="https://i.ibb.co/jvCqYgPj/image.png" alt="Selo de Qualidade" className="w-full h-auto object-contain" />
+                <img src="https://i.ibb.co/9HdWkq0x/AQ8UI.png" alt="Selo de Qualidade" className="w-full h-auto object-contain" />
               </div>
               <button
                 onClick={() => handleCheckout("Premium")}
@@ -672,7 +672,7 @@ export default function App() {
           <SectionHeading title="Perguntas Frequentes" subtitle="Dúvidas comuns" />
           <div className="space-y-3">
             {[
-              { q: "O acesso é imediato?", a: "Sim! Logo após a confirmação do pagamento, você recebe um link exclusivo no seu e-mail e WhatsApp para baixar e começar." },
+              { q: "O acesso é imediato?", a: "Sim! Logo após a confirmação do pagamento, você recebe o produto pelo email para baixar e começar." },
               { q: "Quais as formas de pagamento?", a: "Aceitamos Cartão de Crédito, Pix" },
               { q: "Serve para qual idade?", a: "O material é focado no desenvolvimento de crianças entre 3 e 12 anos de idade." },
               { q: "Posso acessar de qualquer lugar?", a: "Com certeza. No celular, tablet ou computador, a diversão acontece onde você estiver." }
