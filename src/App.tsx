@@ -121,8 +121,8 @@ export default function App() {
 
   const handleBasicSelect = () => setShowUpsell(true);
 
-  const handleCheckout = (planName: string) => {
-    alert(`Redirecionando para o seguro checkout do plano ${planName}!`);
+  const handleCheckout = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
     setShowUpsell(false);
   };
 
@@ -635,7 +635,7 @@ export default function App() {
                 <img src="https://i.ibb.co/9HdWkq0x/AQ8UI.png" alt="Selo de Qualidade" className="w-full h-auto object-contain" />
               </div>
               <button
-                onClick={() => handleCheckout("Premium")}
+                onClick={() => handleCheckout("https://ggcheckout.app/checkout/v5/lOH98eHB68wNimgLX3Wk")}
                 className="w-full py-5 rounded-2xl bg-brand-purple text-white font-black text-xl shadow-brand hover:translate-y-[-3px] active:translate-y-[2px] transition-all flex items-center justify-center gap-2.5"
               >
                 QUERO O PREMIUM <MousePointer2 size={20} />
@@ -776,14 +776,14 @@ export default function App() {
 
                 <div className="space-y-4">
                   <button
-                    onClick={() => handleCheckout("Premium Upsell")}
+                    onClick={() => handleCheckout("https://ggcheckout.app/checkout/v5/WRfAbYTKoxmWiIoNLNBA")}
                     className="w-full py-5 rounded-2xl bg-brand-pink text-white font-black text-xl shadow-lg hover:translate-y-[-2px] active:translate-y-[2px] transition-all"
                     style={{ boxShadow: `0 6px 0 0 #be185d` }}
                   >
                     QUERO O PREMIUM AGORA
                   </button>
                   <button
-                    onClick={() => handleCheckout("Basic")}
+                    onClick={() => handleCheckout("https://ggcheckout.app/checkout/v5/Gs9En4RAgM0RtzTPxYJr")}
                     className="text-slate-400 font-bold text-xs underline hover:text-slate-600 transition-colors"
                   >
                     Quero manter o básico por R$ 10,00
