@@ -122,7 +122,7 @@ export default function App() {
   const handleBasicSelect = () => setShowUpsell(true);
 
   const handleCheckout = (url: string) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.location.href = url;
     setShowUpsell(false);
   };
 
