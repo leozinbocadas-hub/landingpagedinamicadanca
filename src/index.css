@@ -13,7 +13,9 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply antialiased text-slate-800 selection:bg-brand-pink selection:text-white;
+    @apply antialiased text-slate-800;
+    user-select: none;
+    -webkit-user-select: none;
   }
 }
 
