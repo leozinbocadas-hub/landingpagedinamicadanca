@@ -149,6 +149,22 @@ export default function BackRedirectPage() {
           Liberei um desconto radical de <span className="text-brand-purple underline decoration-brand-yellow decoration-4">última hora</span> para você não ficar de fora. Escolha o seu plano agora:
         </p>
 
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-12 max-w-3xl mx-auto relative group"
+        >
+          <div className="absolute -inset-1 bg-gradient-to-r from-brand-yellow via-brand-pink to-brand-purple rounded-[32px] blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+          <div className="relative rounded-[30px] overflow-hidden shadow-2xl border-4 border-white">
+            <img 
+              src="https://i.ibb.co/BVyZMRg7/image.png" 
+              alt="Banner de Desconto" 
+              className="w-full h-auto object-cover transform transition-transform duration-500 group-hover:scale-[1.02]"
+            />
+          </div>
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto px-4">
           <OfferCard 
             title="Plano Básico"

@@ -181,6 +181,31 @@ export default function UpsellPage() {
             </p>
           </div>
 
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-12 max-w-4xl mx-auto relative group"
+          >
+            <div className="absolute -inset-1 bg-gradient-to-r from-brand-pink via-brand-purple to-brand-yellow rounded-[42px] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+            <div className="relative rounded-[40px] overflow-hidden shadow-2xl border-4 border-white">
+              <img 
+                src="https://i.ibb.co/21xmFHkb/c1c4d83d-9a17-4524-9c57-8558708f1ec7-1777955265337.avif" 
+                alt="Banner Promocional" 
+                className="w-full h-auto object-cover transform transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            
+            {/* Floating Badges on Banner */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-4 -right-4 bg-brand-yellow text-brand-purple px-6 py-3 rounded-2xl font-black text-sm shadow-xl z-20 rotate-12 border-2 border-white"
+            >
+              70% OFF
+            </motion.div>
+          </motion.div>
+
           <div className="mb-8">
              <p className="text-slate-400 font-black text-[10px] uppercase tracking-[0.3em] mb-4">MAS ESPERE UM SEGUNDO...</p>
              <h2 className="text-2xl md:text-4xl font-black text-slate-800 tracking-tighter leading-none italic">
