@@ -118,7 +118,7 @@ export default function LandingPage() {
 
     const handlePopState = (event: PopStateEvent) => {
       // When the user clicks "back", they are redirected to the downsell page
-      window.location.href = '/oferta-especial';
+      window.location.href = appendUTMsToUrl('/oferta-especial');
     };
 
     window.addEventListener('popstate', handlePopState);
