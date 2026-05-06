@@ -28,6 +28,7 @@ import {
   Lightbulb,
   AlertCircle
 } from 'lucide-react';
+import { appendUTMsToUrl } from '../utils/utm';
 
 const COLORS = {
   pink: '#F116CB',
@@ -140,7 +141,7 @@ export default function LandingPage() {
   const handleBasicSelect = () => setShowUpsell(true);
 
   const handleCheckout = (url: string) => {
-    window.location.href = url;
+    window.location.href = appendUTMsToUrl(url);
     setShowUpsell(false);
   };
 

@@ -12,6 +12,7 @@ import {
   Gem,
   Crown
 } from 'lucide-react';
+import { appendUTMsToUrl } from '../utils/utm';
 
 const COLORS = {
   pink: '#F116CB',
@@ -78,7 +79,7 @@ const OfferCard = ({
     </ul>
 
     <button
-      onClick={() => window.location.href = ctaUrl}
+      onClick={() => window.location.href = appendUTMsToUrl(ctaUrl)}
       className={`w-full py-4 rounded-2xl font-black text-lg transition-all flex items-center justify-center gap-2 ${
         highlight ? 'bg-brand-pink text-white shadow-lg shadow-brand-pink/20' : 'bg-slate-100 text-slate-800'
       }`}

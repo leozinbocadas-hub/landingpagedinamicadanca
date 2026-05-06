@@ -4,8 +4,13 @@ import LandingPage from './pages/LandingPage';
 import UpsellPage from './pages/UpsellPage';
 import Upsell2Page from './pages/Upsell2Page';
 import BackRedirectPage from './pages/BackRedirectPage';
+import { captureUTMs } from './utils/utm';
 
 export default function App() {
+  React.useEffect(() => {
+    captureUTMs();
+  }, []);
+
   return (
     <Router>
       <Routes>

@@ -14,6 +14,7 @@ import {
   Star as StarIcon,
   Crown
 } from 'lucide-react';
+import { appendUTMsToUrl } from '../utils/utm';
 
 const COLORS = {
   pink: '#F116CB',
@@ -112,7 +113,7 @@ const OfferCard = ({
     </ul>
 
     <button
-      onClick={() => window.location.href = ctaUrl}
+      onClick={() => window.location.href = appendUTMsToUrl(ctaUrl)}
       className={`w-full py-4 px-4 rounded-[20px] font-black text-base md:text-lg transition-all flex items-center justify-center gap-2 group relative overflow-hidden ${
         highlight 
           ? 'bg-brand-purple text-white shadow-brand hover:translate-y-[-2px] active:translate-y-[2px]' 
