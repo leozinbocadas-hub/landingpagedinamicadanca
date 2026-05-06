@@ -23,6 +23,7 @@ const UTM_KEYS = [
 
 /**
  * Captures UTM parameters from the current URL and saves them to localStorage.
+ * Note: An early capture script is also present in index.html to prevent data loss.
  */
 export const captureUTMs = () => {
   if (typeof window === 'undefined') return {};
@@ -30,6 +31,7 @@ export const captureUTMs = () => {
   const urlParams = new URLSearchParams(window.location.search);
   const utms: Record<string, string> = {};
 
+  // Try to capture from URL
   UTM_KEYS.forEach(key => {
     const value = urlParams.get(key);
     if (value) {
@@ -38,11 +40,11 @@ export const captureUTMs = () => {
     }
   });
 
-  // Also capture any parameters already present in Utmify if available
-  // Utmify stores data in various ways, but standard UTMs are the best fallback.
-
-  console.log('[UTM Tracker] Captured:', utms);
-  return utms;
+  // Check what we have in localStorage (including early capture)
+  const stored = getStoredUTMs();
+  
+  console.log('[UTM Tracker] Active UTMs:', stored);
+  return stored;
 };
 
 /**
@@ -70,7 +72,6 @@ export const appendUTMsToUrl = (url: string) => {
   try {
     const utms = getStoredUTMs();
     if (Object.keys(utms).length === 0) {
-      console.log('[UTM Tracker] No stored UTMs to append to:', url);
       return url;
     }
 
@@ -80,6 +81,7 @@ export const appendUTMsToUrl = (url: string) => {
     if (url.startsWith('http')) {
       const urlObj = new URL(url);
       Object.entries(utms).forEach(([key, value]) => {
+        // We append all stored tracking keys
         if (!urlObj.searchParams.has(key)) {
           urlObj.searchParams.set(key, value);
         }
@@ -97,7 +99,6 @@ export const appendUTMsToUrl = (url: string) => {
       resultUrl = `${path}?${searchParams.toString()}`;
     }
 
-    console.log('[UTM Tracker] Final URL:', resultUrl);
     return resultUrl;
     
   } catch (e) {

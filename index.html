@@ -4,6 +4,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function() {
+      const keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'src', 'off', 'fbclid', 'gclid', 'ttclid', 'msclkid'];
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.forEach((value, key) => {
+        if (keys.includes(key) || key.startsWith('utm_')) {
+          localStorage.setItem('tracking_' + key, value);
+        }
+      });
+    })();
+  </script>
   <title>+250 Dinâmicas Interativas de Dança Infantil</title>
   <link rel="icon" type="image/png" href="/src/favicon.png" />
   <script
