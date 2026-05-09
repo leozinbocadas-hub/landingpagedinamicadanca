@@ -82,19 +82,24 @@ const Decoration = ({ className = "", delay = 0, size = 10 }: { className?: stri
   </motion.div>
 );
 
-const VSLPlayer = React.memo(() => (
-  <div
-    className="absolute inset-0 z-10"
-    dangerouslySetInnerHTML={{
-      __html: `
-      <div id="ifr_69f57959429b5d0eef514412_wrapper" style="margin: 0 auto; width: 100%; height: 100%;"> 
-        <div style="position: relative; padding: 178.107% 0 0 0; height: 100%;" id="ifr_69f57959429b5d0eef514412_aspect"> 
-          <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_69f57959429b5d0eef514412" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 2.5rem;" referrerpolicy="origin" onload="this.onload=null, this.src='https://scripts.converteai.net/ab14c621-69de-4bc7-ad1a-73b273a93155/players/69f57959429b5d0eef514412/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> 
-        </div> 
-      </div>
-    `}}
-  />
-));
+const VSLPlayer = React.memo(() => {
+  useEffect(() => {
+    const s = document.createElement("script");
+    s.src = "https://scripts.converteai.net/ab14c621-69de-4bc7-ad1a-73b273a93155/players/69ff915a6e950e64683f031d/v4/player.js";
+    s.async = true;
+    document.head.appendChild(s);
+  }, []);
+
+  return (
+    <div
+      className="absolute inset-0 z-10 flex items-center justify-center"
+      dangerouslySetInnerHTML={{
+        __html: `
+        <vturb-smartplayer id="vid-69ff915a6e950e64683f031d" style="display: block; margin: 0 auto; width: 100%; max-width: 400px;"></vturb-smartplayer>
+      `}}
+    />
+  );
+});
 
 // --- Main App ---
 
