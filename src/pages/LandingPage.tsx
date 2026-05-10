@@ -106,7 +106,12 @@ const VSLPlayer = React.memo(() => {
 export default function LandingPage() {
   const [showUpsell, setShowUpsell] = useState(false);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [timeLeft, setTimeLeft] = useState(659); // 10:59 in seconds
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const now = new Date();
+    const midnight = new Date();
+    midnight.setHours(23, 59, 59, 999);
+    return Math.max(0, Math.floor((midnight.getTime() - now.getTime()) / 1000));
+  });
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
 
@@ -134,9 +139,10 @@ export default function LandingPage() {
   }, []);
 
   const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
+    const hours = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    return `${hours > 0 ? hours.toString().padStart(2, '0') + ':' : ''}${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   const scrollToPlans = () => {
@@ -156,20 +162,23 @@ export default function LandingPage() {
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-brand-pink z-[100] origin-left" style={{ scaleX }} />
 
       {/* 1. Urgency Banner (Fixed) */}
-      <div className="fixed top-0 left-0 right-0 bg-brand-pink text-white py-2.5 md:py-3 px-4 font-black text-[10.5px] md:text-[11px] uppercase tracking-[0.15em] md:tracking-[0.3em] z-[100] text-center overflow-hidden shadow-lg leading-tight">
+      <div className="fixed top-0 left-0 right-0 bg-red-600 text-white py-2.5 md:py-4 px-1 md:px-4 font-black uppercase z-[100] text-center overflow-hidden shadow-2xl leading-tight border-b-4 border-red-800 tracking-tighter md:tracking-[0.1em]">
         <motion.div
-          animate={{ x: [0, -5, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex items-center justify-center gap-4"
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+          className="flex flex-col md:flex-row items-center justify-center gap-1 md:gap-4 w-full"
         >
-          <Zap size={14} fill="currentColor" className="animate-pulse" />
-          <span>Oferta exclusiva termina em {formatTime(timeLeft)} minutos</span>
-          <Zap size={14} fill="currentColor" className="animate-pulse" />
+          <span className="drop-shadow-md text-center whitespace-nowrap w-full md:w-auto" style={{ fontSize: "clamp(12px, 3.5vw, 18px)" }}>
+            OFERTA ESPECIAL DIA DAS MÃES SOMENTE HOJE!
+          </span>
+          <span className="bg-white text-red-600 px-4 py-0.5 md:py-1 rounded-full text-[12px] md:text-[14px] shadow-md tracking-widest font-black shrink-0">
+            FALTAM {formatTime(timeLeft)}
+          </span>
         </motion.div>
       </div>
 
       {/* Floating Header */}
-      <nav className="fixed top-14 md:top-16 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-4xl z-50">
+      <nav className="fixed top-[90px] md:top-16 left-1/2 -translate-x-1/2 w-[95%] md:w-[90%] max-w-4xl z-50">
         <div className="glass rounded-2xl px-4 md:px-5 py-2 md:py-2.5 flex justify-between items-center shadow-xl border-2 border-white/50">
           <img src="https://i.ibb.co/Wv2LjQz6/image.png" alt="Logo" className="h-12 w-auto scale-[2.2] origin-left ml-6" />
           <div className="hidden md:flex items-center gap-6 font-bold text-slate-600 text-[13px]">
@@ -556,8 +565,8 @@ export default function LandingPage() {
             </p>
             <div className="flex gap-3 sm:gap-5 items-center">
               {[
-                { label: 'Horas', value: '00' },
-                { label: 'Minutos', value: Math.floor(timeLeft / 60).toString().padStart(2, '0') },
+                { label: 'Horas', value: Math.floor(timeLeft / 3600).toString().padStart(2, '0') },
+                { label: 'Minutos', value: Math.floor((timeLeft % 3600) / 60).toString().padStart(2, '0') },
                 { label: 'Segundos', value: (timeLeft % 60).toString().padStart(2, '0') }
               ].map((unit, i) => (
                 <React.Fragment key={i}>
